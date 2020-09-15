@@ -87,9 +87,9 @@ namespace API.Models
             set { _companyImage = value; }
         }
 
-        private int _email;
+        private string _email;
 
-        public int Email
+        public string Email
         {
             get { return _email; }
             set { _email = value; }
