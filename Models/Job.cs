@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
-    public class Jobs
+    public class Job
     {
         private int _id;
 
