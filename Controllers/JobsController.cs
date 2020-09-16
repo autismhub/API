@@ -12,7 +12,13 @@ namespace API.Controllers
     [ApiController]
     public class JobsController : ControllerBase
     {
-        private readonly MockJobRepo _repository = new MockJobRepo();
+        private readonly IJobRepo _repository;
+
+        public JobsController(IJobRepo repository)
+        {
+            _repository = repository;
+        }
+
         // GET api/jobs
         [HttpGet]
         public ActionResult <IEnumerable<Job>> GetAllJobs()
