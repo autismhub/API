@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace API.Models
     public class Job
     {
         private int _id;
-
+        [Key]
         public int Id
         {
             get { return _id; }
@@ -16,7 +17,7 @@ namespace API.Models
         }
 
         private string _title;
-
+        [Required]
         public string Title
         {
             get { return _title; }
@@ -24,7 +25,7 @@ namespace API.Models
         }
 
         private DateTime _creationDate;
-
+        [Required]
         public DateTime CreationDate
         {
             get { return _creationDate; }
@@ -40,7 +41,7 @@ namespace API.Models
         }
 
         private string _companyName;
-
+        [Required]
         public string CompanyName
         {
             get { return _companyName; }
@@ -64,7 +65,7 @@ namespace API.Models
         }
 
         private string _description;
-
+        [Required]
         public string Description
         {
             get { return _description; }
@@ -88,7 +89,7 @@ namespace API.Models
         }
 
         private string _email;
-
+        [Required]
         public string Email
         {
             get { return _email; }
@@ -96,7 +97,7 @@ namespace API.Models
         }
 
         private string _phone;
-
+        
         public string Phone
         {
             get { return _phone; }
@@ -112,7 +113,7 @@ namespace API.Models
         }
 
         private string _contactName;
-
+        [Required]
         public string ContactName
         {
             get { return _contactName; }
