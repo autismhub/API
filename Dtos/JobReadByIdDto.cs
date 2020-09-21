@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace API.Models
+namespace API.Dtos
 {
-    public class Job
+    public class JobReadByIdDto
     {
         #region Fields
 
@@ -62,6 +62,7 @@ namespace API.Models
             get { return _companyName; }
             set { _companyName = value; }
         }
+
 
         public string Category
         {
