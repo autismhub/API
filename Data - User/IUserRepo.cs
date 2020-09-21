@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Data___User
 {
-    interface IUserRepo
+    public interface IUserRepo
     {
         IEnumerable<User> GetAllUsers();
 
