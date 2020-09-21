@@ -11,5 +11,9 @@ namespace API.Data___User
         IEnumerable<User> GetAllUsers();
 
         User GetUserById(int id);
+
+        void CreateUser(User user);
+
+        bool SaveChanges();
     }
 }
