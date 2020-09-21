@@ -6,6 +6,8 @@ using API.Data___User;
 using API.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using API.Models;
 
 namespace API.Controllers
 {
@@ -14,10 +16,12 @@ namespace API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepo _repository;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserRepo repository)
+        public UserController(IUserRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         /// <summary>
@@ -25,6 +29,7 @@ namespace API.Controllers
         /// </summary>
         /// <param name="id">Represent a a specifik user id</param>
         /// <returns></returns>
+        /// api/user/{id}
         [HttpGet("{id}", Name ="GetCommandById")]
         public ActionResult<UserReadDto> GetUserById(int id )
         {
@@ -39,17 +44,24 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Represent a method that performs a https GET request for every user
+        /// Represent a method that performs a http GET request for every user
         /// </summary>
         /// <returns></returns>
+        /// /api/user
         [HttpGet]
         public ActionResult<IEnumerable<UserReadDto>> GetAllUsers()
         {
             var UserItems = _repository.GetAllUsers();
 
-            return Ok();
+            return Ok(_mapper.Map<IEnumerable<UserReadDto>>(UserItems));
         }
 
+        /// <summary>
+        /// Represent a method that performs a http POST request to create a new user
+        /// </summary>
+        /// <param name="userCreateDto">Represent the user object</param>
+        /// <returns></returns>
+        /// /api/user
         public ActionResult<UserReadDto> CreateUser(UserCreateDto userCreateDto)
         {
             var userModel = _mapper.Map<User>(userCreateDto);
@@ -57,7 +69,7 @@ namespace API.Controllers
             _repository.CreateUser(userModel);
             _repository.SaveChanges();
 
-            var userReadDto = _mapper<UserReadDto>(userModel);
+            var userReadDto = _mapper.Map<UserReadDto>(userModel);
 
             return CreatedAtRoute(nameof(GetUserById), new { id = userReadDto.Id}, userReadDto);
         }
