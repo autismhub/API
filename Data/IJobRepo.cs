@@ -8,7 +8,10 @@ namespace API.Data
 {
     public interface IJobRepo
     {
+        bool SaveChanges();
+
         IEnumerable<Job> GetAllJobs();
         Job GetJobById(int id);
+        void AddJob(Job job);
     }
 }

@@ -33,7 +33,7 @@ namespace API.Controllers
         }
 
         // GET api/jobs/{id}
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetJobById")]
         public ActionResult <JobReadByIdDto> GetJobById(int id)
         {
             Job jobItem = _repository.GetJobById(id);
@@ -43,6 +43,19 @@ namespace API.Controllers
                 return Ok(_mapper.Map<JobReadByIdDto>(jobItem));
             }
             return NotFound();
+        }
+
+        // POST api/jobs
+        [HttpPost]
+        public ActionResult <JobReadByIdDto> AddJob(JobCreateDto jobAddDto)
+        {
+            Job jobModel = _mapper.Map<Job>(jobAddDto);
+            _repository.AddJob(jobModel);
+            _repository.SaveChanges();
+
+            var jobReadByIdDto = _mapper.Map<JobReadByIdDto>(jobModel);
+
+            return CreatedAtRoute(nameof(GetJobById), new {Id = jobReadByIdDto.Id}, jobReadByIdDto);
         }
     }
 }

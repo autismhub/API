@@ -9,6 +9,11 @@ namespace API.Data
 {
     public class MockJobRepo : IJobRepo
     {
+        public void AddJob(Job job)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Job> GetAllJobs()
         {
             List<Job> jobs = new List<Job>
@@ -23,6 +28,11 @@ namespace API.Data
         public Job GetJobById(int id)
         {
             return new Job {Id=0, Address="Carl gustavsgade 3, Høje Taastrup", Benefits="Free coffee/tea", Category="Back-end Developer", City="Høje Taastrup", CompanyImage="AspIT.jpg", CompanyName="AspIT", ContactName="Bo Jørgensen", CreationDate=new DateTime(2020, 09, 15), Description="Description", Email="example@gmail.com", Logo="Logo.png", Phone="12345678", Title="ASP DOTNET Core Back-end developer"};
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
         }
     }
 }
