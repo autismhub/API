@@ -14,5 +14,6 @@ namespace API.Data
         Job GetJobById(int id);
         void CreateJob(Job job);
         void UpdateJob(Job job);
+        void DeleteJob(Job job);
     }
 }

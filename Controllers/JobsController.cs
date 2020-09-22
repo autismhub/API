@@ -54,7 +54,7 @@ namespace API.Controllers
             _repository.CreateJob(jobModel);
             _repository.SaveChanges();
 
-            var jobReadByIdDto = _mapper.Map<JobReadByIdDto>(jobModel);
+            JobReadByIdDto jobReadByIdDto = _mapper.Map<JobReadByIdDto>(jobModel);
 
             return CreatedAtRoute(nameof(GetJobById), new {Id = jobReadByIdDto.Id}, jobReadByIdDto);
         }
@@ -63,7 +63,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public ActionResult UpdateJob(int id, JobUpdateDto jobUpdateDto)
         {
-            var jobModelFromRepo = _repository.GetJobById(id);
+            Job jobModelFromRepo = _repository.GetJobById(id);
             if(jobModelFromRepo == null)
             {
                 return NotFound();
@@ -80,7 +80,7 @@ namespace API.Controllers
         [HttpPatch("{id}")]
         public ActionResult PartialJobUpdate(int id, JsonPatchDocument<JobUpdateDto> patchDoc)
         {
-            var jobModelFromRepo = _repository.GetJobById(id);
+            Job jobModelFromRepo = _repository.GetJobById(id);
             if (jobModelFromRepo == null)
             {
                 return NotFound();
@@ -95,6 +95,21 @@ namespace API.Controllers
             _mapper.Map(jobToPatch, jobModelFromRepo);
 
             _repository.UpdateJob(jobModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        // DELETE api/jobs/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteJob(int id)
+        {
+            Job jobModelFromRepo = _repository.GetJobById(id);
+            if (jobModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _repository.DeleteJob(jobModelFromRepo);
             _repository.SaveChanges();
 
             return NoContent();

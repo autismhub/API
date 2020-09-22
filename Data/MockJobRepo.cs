@@ -14,6 +14,11 @@ namespace API.Data
             throw new NotImplementedException();
         }
 
+        public void DeleteJob(Job job)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Job> GetAllJobs()
         {
             List<Job> jobs = new List<Job>

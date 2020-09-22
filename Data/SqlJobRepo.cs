@@ -24,6 +24,15 @@ namespace API.Data
             _context.Jobs.Add(job);
         }
 
+        public void DeleteJob(Job job)
+        {
+            if (job == null)
+            {
+                throw new ArgumentNullException(nameof(job));
+            }
+            _context.Jobs.Remove(job);
+        }
+
         public IEnumerable<Job> GetAllJobs()
         {
             return _context.Jobs.ToList();
