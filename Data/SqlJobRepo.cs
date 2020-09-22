@@ -15,9 +15,9 @@ namespace API.Data
             _context = context;
         }
 
-        public void AddJob(Job job)
+        public void CreateJob(Job job)
         {
-            if(job == null)
+            if (job == null)
             {
                 throw new ArgumentNullException(nameof(job));
             }
@@ -37,6 +37,11 @@ namespace API.Data
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void UpdateJob(Job job)
+        {
+            
         }
     }
 }

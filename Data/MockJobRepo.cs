@@ -9,7 +9,7 @@ namespace API.Data
 {
     public class MockJobRepo : IJobRepo
     {
-        public void AddJob(Job job)
+        public void CreateJob(Job job)
         {
             throw new NotImplementedException();
         }
@@ -31,6 +31,11 @@ namespace API.Data
         }
 
         public bool SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateJob(Job job)
         {
             throw new NotImplementedException();
         }

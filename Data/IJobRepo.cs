@@ -12,6 +12,7 @@ namespace API.Data
 
         IEnumerable<Job> GetAllJobs();
         Job GetJobById(int id);
-        void AddJob(Job job);
+        void CreateJob(Job job);
+        void UpdateJob(Job job);
     }
 }

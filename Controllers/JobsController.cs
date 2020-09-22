@@ -50,12 +50,29 @@ namespace API.Controllers
         public ActionResult <JobReadByIdDto> AddJob(JobCreateDto jobAddDto)
         {
             Job jobModel = _mapper.Map<Job>(jobAddDto);
-            _repository.AddJob(jobModel);
+            _repository.CreateJob(jobModel);
             _repository.SaveChanges();
 
             var jobReadByIdDto = _mapper.Map<JobReadByIdDto>(jobModel);
 
             return CreatedAtRoute(nameof(GetJobById), new {Id = jobReadByIdDto.Id}, jobReadByIdDto);
+        }
+
+        // PUT api/commands/{id}
+        [HttpPut("{id}")]
+        public ActionResult UpdateJob(int id, JobUpdateDto jobUpdateDto)
+        {
+            var jobModelFromRepo = _repository.GetJobById(id);
+            if(jobModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(jobUpdateDto, jobModelFromRepo);
+
+            _repository.UpdateJob(jobModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
         }
     }
 }
