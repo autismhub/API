@@ -16,6 +16,7 @@ namespace API.Profiles
             CreateMap<Job, JobsReadDto>();
             CreateMap<JobCreateDto, Job>();
             CreateMap<JobUpdateDto, Job>();
+            CreateMap<Job, JobUpdateDto>();
         }
     }
 }

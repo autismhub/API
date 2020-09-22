@@ -6,6 +6,7 @@ using API.Data;
 using API.Dtos;
 using API.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -58,7 +59,7 @@ namespace API.Controllers
             return CreatedAtRoute(nameof(GetJobById), new {Id = jobReadByIdDto.Id}, jobReadByIdDto);
         }
 
-        // PUT api/commands/{id}
+        // PUT api/jobs/{id}
         [HttpPut("{id}")]
         public ActionResult UpdateJob(int id, JobUpdateDto jobUpdateDto)
         {
@@ -68,6 +69,30 @@ namespace API.Controllers
                 return NotFound();
             }
             _mapper.Map(jobUpdateDto, jobModelFromRepo);
+
+            _repository.UpdateJob(jobModelFromRepo);
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
+
+        // PATCH api/jobs/{id}
+        [HttpPatch("{id}")]
+        public ActionResult PartialJobUpdate(int id, JsonPatchDocument<JobUpdateDto> patchDoc)
+        {
+            var jobModelFromRepo = _repository.GetJobById(id);
+            if (jobModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            JobUpdateDto jobToPatch = _mapper.Map<JobUpdateDto>(jobModelFromRepo);
+            patchDoc.ApplyTo(jobToPatch, ModelState);
+            if(!TryValidateModel(jobToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(jobToPatch, jobModelFromRepo);
 
             _repository.UpdateJob(jobModelFromRepo);
             _repository.SaveChanges();
