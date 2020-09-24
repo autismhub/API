@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Dtos
 {
+    // This is the response if a job is created
     public class JobCreateDto
     {
         #region Fields

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Data
 {
+    // This is the methods implemented in the repositories
     public interface IJobRepo
     {
         bool SaveChanges();

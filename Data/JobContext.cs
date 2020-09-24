@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Data
 {
+    // This is needed for communicating with the database
     public class JobContext : DbContext
     {
         public JobContext(DbContextOptions<JobContext> opt) : base(opt)

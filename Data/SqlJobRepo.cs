@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Data
 {
+    // This is the repository that uses the DbContext to communicate with the database
     public class SqlJobRepo : IJobRepo
     {
         private readonly JobContext _context;

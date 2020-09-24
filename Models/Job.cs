@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Models
 {
+    // Job entities is stored in the database with these properties
     public class Job
     {
         #region Fields

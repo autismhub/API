@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Dtos
 {
+    // This is the response when getting a job by id
     public class JobReadByIdDto
     {
         #region Fields

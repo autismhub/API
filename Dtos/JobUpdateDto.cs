@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Dtos
 {
+    // This is the response when updating a job
     public class JobUpdateDto
     {
         #region Fields

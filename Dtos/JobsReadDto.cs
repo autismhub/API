@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace API.Dtos
 {
+    // This is the response when getting all jobs
     public class JobsReadDto
     {
         #region Fields

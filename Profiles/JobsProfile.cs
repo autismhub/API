@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace API.Profiles
 {
+    // This class is for creating maps with automapper
     public class JobsProfile : Profile
     {
         public JobsProfile()

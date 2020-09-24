@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace API.Data
 {
+    // This class is a template of a repository that can easily be changed to a real one
     public class MockJobRepo : IJobRepo
     {
         public void CreateJob(Job job)

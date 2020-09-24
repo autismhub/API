@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    // This class controls the different endpoints of the route and what they do
     [Route("api/jobs")]
     [ApiController]
     public class JobsController : ControllerBase
