@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace API.Dtos
@@ -11,14 +12,14 @@ namespace API.Dtos
     {
         #region Fields
 
-        private int _id;
-        private string _title;
-        private DateTime _creationDate;
-        private string _logo;
-        private string _companyName;
-        private string _category;
-        private string _city;
-        private string _description;
+        private readonly int _id;
+        private readonly string _title = new string(new char[250], 0, 250);
+        private readonly DateTime _creationDate;
+        private readonly string _logo = new string(new char[150], 0, 150);
+        private readonly string _companyName = new string(new char[200], 0, 200);
+        private readonly string _category = new string(new char[150], 0, 150);
+        private readonly string _city = new string(new char[150], 0, 150);
+        private readonly StringBuilder _description = new StringBuilder(1875, 15000);
 
         #endregion
 
@@ -28,53 +29,51 @@ namespace API.Dtos
         public int Id
         {
             get { return _id; }
-            set { _id = value; }
         }
 
         [Required]
+        [MaxLength(250)]
         public string Title
         {
             get { return _title; }
-            set { _title = value; }
         }
 
         [Required]
         public DateTime CreationDate
         {
             get { return _creationDate; }
-            set { _creationDate = value; }
         }
 
+        [MaxLength(150)]
         public string Logo
         {
             get { return _logo; }
-            set { _logo = value; }
         }
 
         [Required]
+        [MaxLength(200)]
         public string CompanyName
         {
             get { return _companyName; }
-            set { _companyName = value; }
         }
 
+        [MaxLength(150)]
         public string Category
         {
             get { return _category; }
-            set { _category = value; }
         }
 
+        [MaxLength(150)]
         public string City
         {
             get { return _city; }
-            set { _city = value; }
         }
 
         [Required]
-        public string Description
+        [MaxLength(15000)]
+        public StringBuilder Description
         {
             get { return _description; }
-            set { _description = value; }
         }        
 
         #endregion

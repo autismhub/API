@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace API.Dtos
@@ -11,106 +12,248 @@ namespace API.Dtos
     {
         #region Fields
 
-        private string _title;
+        private string _title = new string(new char[250], 0, 250);
         private DateTime _creationDate;
-        private string _logo;
-        private string _companyName;
-        private string _category;
-        private string _city;
-        private string _description;
-        private string _benefits;
-        private string _companyImage;
-        private string _email;
-        private string _phone;
-        private string _address;
-        private string _contactName;
+        private string _logo = new string(new char[150], 0, 150);
+        private string _companyName = new string(new char[200], 0, 200);
+        private string _category = new string(new char[150], 0, 150);
+        private string _city = new string(new char[150], 0, 150);
+        private StringBuilder _description = new StringBuilder(1875, 15000);
+        private string _benefits = new string(new char[250], 0, 250);
+        private string _companyImage = new string(new char[150], 0, 150);
+        private string _email = new string(new char[100], 0, 100);
+        private string _phone = new string(new char[50], 0, 50);
+        private string _address = new string(new char[150], 0, 150);
+        private string _contactName = new string(new char[100], 0, 100);
 
         #endregion
 
         #region Properties
 
         [Required]
+        [MaxLength(250)]
         public string Title
         {
             get { return _title; }
-            set { _title = value; }
+            set
+            {
+                try
+                {
+                    _title = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the title field is too long
+                }
+            }
         }
 
         [Required]
         public DateTime CreationDate
         {
             get { return _creationDate; }
-            set { _creationDate = value; }
+            set
+            {
+                _creationDate = DateTime.Now;
+            }
         }
 
+        [MaxLength(150)]
         public string Logo
         {
             get { return _logo; }
-            set { _logo = value; }
+            set
+            {
+                try
+                {
+                    _logo = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The name of the logo image is too long
+                }
+            }
         }
 
         [Required]
+        [MaxLength(200)]
         public string CompanyName
         {
             get { return _companyName; }
-            set { _companyName = value; }
+            set
+            {
+                try
+                {
+                    _companyName = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the company name field is too long
+                }
+            }
         }
 
+        [MaxLength(150)]
         public string Category
         {
             get { return _category; }
-            set { _category = value; }
+            set
+            {
+                try
+                {
+                    _category = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the category field is too long
+                }
+            }
         }
 
+        [MaxLength(150)]
         public string City
         {
             get { return _city; }
-            set { _city = value; }
+            set
+            {
+                try
+                {
+                    _title = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the city field is too long
+                }
+            }
         }
 
+        [MaxLength(15000)]
         [Required]
-        public string Description
+        public StringBuilder Description
         {
             get { return _description; }
-            set { _description = value; }
+            set
+            {
+                if (value.Length > _description.MaxCapacity)
+                {
+                    try
+                    {
+                        throw new ArgumentOutOfRangeException();
+                    }
+                    catch (ArgumentOutOfRangeException e)
+                    {
+                        // Message: The value/string in the description field is too long
+                    }
+                }
+                else
+                {
+                    _description = value;
+                }
+            }
         }
 
+        [MaxLength(250)]
         public string Benefits
         {
             get { return _benefits; }
-            set { _benefits = value; }
+            set
+            {
+                try
+                {
+                    _benefits = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the benefits field is too long
+                }
+            }
         }
 
+        [MaxLength(150)]
         public string CompanyImage
         {
             get { return _companyImage; }
-            set { _companyImage = value; }
+            set
+            {
+                try
+                {
+                    _companyImage = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The name of the company image is too long
+                }
+            }
         }
 
+        [MaxLength(100)]
         [Required]
         public string Email
         {
             get { return _email; }
-            set { _email = value; }
+            set
+            {
+                try
+                {
+                    _email = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the email field is too long
+                }
+            }
         }
 
+        [MaxLength(50)]
         public string Phone
         {
             get { return _phone; }
-            set { _phone = value; }
+            set
+            {
+                try
+                {
+                    _phone = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the phone field is too long
+                }
+            }
         }
 
+        [MaxLength(150)]
         public string Address
         {
             get { return _address; }
-            set { _address = value; }
+            set
+            {
+                try
+                {
+                    _address = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the address field is too long
+                }
+            }
         }
 
         [Required]
+        [MaxLength(100)]
         public string ContactName
         {
             get { return _contactName; }
-            set { _contactName = value; }
+            set
+            {
+                try
+                {
+                    _contactName = value;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    // Message: The value/string in the contact name field is too long
+                }
+            }
         }
 
         #endregion
